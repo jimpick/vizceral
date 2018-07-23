@@ -772,8 +772,13 @@ class Vizceral extends EventEmitter {
     TWEEN.update();
 
     // Check size
-    if ((this.renderer.domElement.offsetWidth !== 0 && this.width !== this.renderer.domElement.offsetWidth) ||
-        (this.renderer.domElement.offsetHeight !== 0 && this.height !== this.renderer.domElement.offsetHeight)) {
+    if ((this.renderer.domElement.offsetWidth !== 0 &&
+         this.width !== this.renderer.domElement.offsetWidth) ||
+        (this.renderer.domElement.offsetHeight !== 0 &&
+         this.height !== this.renderer.domElement.offsetHeight)) {
+      console.log('Jim w h',
+                  this.width, this.renderer.domElement.offsetWidth,
+                  this.height, this.renderer.domElement.offsetHeight)
       this.setSize(this.renderer.domElement.offsetWidth, this.renderer.domElement.offsetHeight);
     }
 

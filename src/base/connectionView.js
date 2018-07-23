@@ -108,7 +108,9 @@ function generateParticleSystem (size, customWidth, connectionWidth, connectionD
 
     customOpacities[i] = 0;
     sizes[i] = 6 * (window.devicePixelRatio || 1);
-    velocities[i * 3] = 3 + (Math.random() * 2);
+    // velocities[i * 3] = 3 + (Math.random() * 2);
+    // velocities[i * 3] = 12 + (Math.random() * 4);
+    velocities[i * 3] = 20 + (Math.random() * 8);
   }
 
   const geometry = new THREE.BufferGeometry();
