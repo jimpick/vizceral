@@ -15,6 +15,7 @@
  *     limitations under the License.
  *
  */
+import { readFileSync } from 'fs';
 import * as THREE from 'three';
 
 import BaseView from './baseView';
@@ -26,7 +27,9 @@ import Constants from './constants';
 const loader = new THREE.TextureLoader();
 
 // Preload the particle texture
-const particle = require('url!./particleD.png'); // eslint-disable-line import/no-extraneous-dependencies
+// const particle = require('url!./particleD.png'); // eslint-disable-line import/no-extraneous-dependencies
+const particleBuffer = readFileSync(`${__dirname}/particleD.png`);
+const particle = `data:image/png;base64,${particleBuffer.toString('base64')}`;
 
 let particleTexture;
 loader.load(particle, (texture) => { particleTexture = texture; });

@@ -1,8 +1,8 @@
 {
-  "name": "vizceral-dat",
+  "name": "@jimpick/vizceral-dat",
   "version": "4.6.0",
   "description": "Intuitive animated traffic graph visualization using webgl. If a graph of nodes and edges with data about traffic volume is provided, it will render a traffic graph animating the connection volume between nodes.",
-  "main": "dist/vizceral.js",
+  "main": "src/vizceral.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:jimpick/vizceral-dat.git"
@@ -22,6 +22,7 @@
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.18.0",
+    "brfs-babel": "^1.0.0",
     "css-loader": "^0.26.0",
     "documentation": "^4.0.0-beta2",
     "eslint": "^3.8.1",
@@ -38,6 +39,7 @@
     "yargs": "^6.3.0"
   },
   "dependencies": {
+    "babel-preset-env": "^1.7.0",
     "chroma-js": "^1.1.1",
     "hammerjs": "^2.0.8",
     "lodash": "^4.12.0",
@@ -59,5 +61,18 @@
     "lint"
   ],
   "author": "Justin Reynolds <jreynolds@netflix.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "browserify": {
+    "transform": [
+      "brfs-babel",
+      [
+        "babelify",
+        {
+          "presets": [
+            "env"
+          ]
+        }
+      ]
+    ]
+  }
 }

@@ -17,7 +17,8 @@
  */
 import _ from 'lodash';
 
-import LayoutWorker from 'worker?inline!./ltrTreeLayoutWorker'; // eslint-disable-line import/no-extraneous-dependencies, import/extensions
+// import LayoutWorker from 'worker?inline!./ltrTreeLayoutWorker'; // eslint-disable-line import/no-extraneous-dependencies, import/extensions
+import LayoutWorker from './ltrTreeLayoutWorker'; // eslint-disable-line import/no-extraneous-dependencies, import/extensions
 
 class LTRTreeLayout {
   constructor () {

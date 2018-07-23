@@ -36,9 +36,11 @@ function generateDisplayValue (value, format) {
   if (format) { displayValue = numeral(value).format(format); }
 
   // If we're hiding data, don't need to hide percentages
+  /*
   if (__HIDE_DATA__ && displayValue.indexOf('%') === -1) {
     displayValue = displayValue.replace(/[0-9]/g, '#');
   }
+  */
   return displayValue;
 }
 
