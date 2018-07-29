@@ -25,9 +25,12 @@ import DNSLayout from './layouts/dnsLayout';
 import DnsTrafficGraph from './dns/dnsTrafficGraph';
 import FocusedChildTrafficGraph from './focused/focusedChildTrafficGraph';
 import FocusedTrafficGraph from './focused/focusedTrafficGraph';
+import LabeledChildTrafficGraph from './labeled/focusedChildTrafficGraph';
+import LabeledTrafficGraph from './labeled/focusedTrafficGraph';
 import GlobalDefinitions from './globalDefinitions';
 import GlobalStyles from './globalStyles';
 import GlobalTrafficGraph from './global/globalTrafficGraph';
+import SwarmTrafficGraph from './swarm/globalTrafficGraph';
 import LTRTreeLayout from './layouts/ltrTreeLayout';
 import RegionTrafficGraph from './region/regionTrafficGraph';
 import RingCenterLayout from './layouts/ringCenterLayout';
@@ -152,9 +155,12 @@ class Vizceral extends EventEmitter {
 
     this.renderers = {
       global: GlobalTrafficGraph,
+      swarm: SwarmTrafficGraph,
       region: RegionTrafficGraph,
       focused: FocusedTrafficGraph,
       focusedChild: FocusedChildTrafficGraph,
+      labeled: LabeledTrafficGraph,
+      labeledChild: LabeledChildTrafficGraph,
       dns: DnsTrafficGraph
     };
     this.moveNodeInteraction = new MoveNodeInteraction(this);
@@ -778,7 +784,7 @@ class Vizceral extends EventEmitter {
          this.height !== this.renderer.domElement.offsetHeight)) {
       console.log('Jim w h',
                   this.width, this.renderer.domElement.offsetWidth,
-                  this.height, this.renderer.domElement.offsetHeight)
+                  this.height, this.renderer.domElement.offsetHeight);
       this.setSize(this.renderer.domElement.offsetWidth, this.renderer.domElement.offsetHeight);
     }
 
