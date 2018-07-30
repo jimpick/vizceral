@@ -36,8 +36,17 @@ class GlobalStyles {
     this.styles = {
       colorText: 'rgb(214, 214, 214)',
       colorTextDisabled: 'rgb(129, 129, 129)',
-      colorTraffic: {
+      colorNode: {
         normal: 'rgb(186, 213, 237)',
+        // normal: 'rgb(25, 0, 196)',
+        normalDonut: 'rgb(91, 91, 91)',
+        warning: 'rgb(268, 185, 73)',
+        danger: 'rgb(255, 53, 53)'
+      },
+      colorTraffic: {
+        // normal: 'rgb(186, 213, 237)',
+        // normal: 'rgb(0, 0, 255)',
+        normal: 'rgb(255, 0, 0)',
         normalDonut: 'rgb(91, 91, 91)',
         warning: 'rgb(268, 185, 73)',
         danger: 'rgb(255, 53, 53)'
@@ -58,7 +67,8 @@ class GlobalStyles {
       colorPageBackground: 'rgb(45, 45, 45)',
       colorPageBackgroundTransparent: 'rgba(45, 45, 45, 0)',
       colorBorderLines: 'rgb(137, 137, 137)',
-      colorArcBackground: 'rgb(60, 60, 60)'
+      colorArcBackground: 'rgb(60, 60, 60)',
+      colorWhite: 'rgb(255, 255, 255)'
     };
 
     this.shapesStyles = {
@@ -82,6 +92,15 @@ class GlobalStyles {
     if (!color) {
       Console.warn(`Attempted to get a computed color for key '${key}', but does not exist. Returned color for key 'normal' instead`);
       return highlighted ? this.rgba.colorTrafficHighlighted.normal : this.rgba.colorTraffic.normal;
+    }
+    return color;
+  }
+
+  getColorNodeRGBA (key, highlighted) {
+    const color = highlighted ? this.rgba.colorNodeHighlighted[key] : this.rgba.colorNode[key];
+    if (!color) {
+      Console.warn(`Attempted to get a computed color for key '${key}', but does not exist. Returned color for key 'normal' instead`);
+      return highlighted ? this.rgba.colorNodeHighlighted.normal : this.rgba.colorNode.normal;
     }
     return color;
   }
@@ -120,6 +139,14 @@ class GlobalStyles {
         return acc;
       }, {}),
       colorTrafficHighlighted: _.reduce(this.styles.colorTrafficHighlighted, (acc, value, key) => {
+        acc[key] = getRGBA(value);
+        return acc;
+      }, {}),
+      colorNode: _.reduce(this.styles.colorNode, (acc, value, key) => {
+        acc[key] = getRGBA(value);
+        return acc;
+      }, {}),
+      colorNodeHighlighted: _.reduce(this.styles.colorNodeHighlighted, (acc, value, key) => {
         acc[key] = getRGBA(value);
         return acc;
       }, {}),

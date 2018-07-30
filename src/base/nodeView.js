@@ -48,7 +48,7 @@ class NodeView extends BaseView {
     this.donutInternalColor = GlobalStyles.rgba.colorDonutInternalColor;
     this.donutInternalColorThree = new THREE.Color(this.donutInternalColor.r, this.donutInternalColor.g, this.donutInternalColor.b);
 
-    this.borderColor = GlobalStyles.getColorTrafficRGBA(node.getClass());
+    this.borderColor = GlobalStyles.getColorNodeRGBA(node.getClass());
     this.borderMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(this.borderColor.r, this.borderColor.g, this.borderColor.b), transparent: true, opacity: this.borderColor.a });
     this.innerCircleMaterial = new THREE.MeshBasicMaterial({ color: this.donutInternalColorThree, transparent: true });
   }
@@ -98,7 +98,7 @@ class NodeView extends BaseView {
     if (this.object.classInvalidated || force) {
       this.object.classInvalidated = false;
       const nodeClass = this.object.getClass();
-      const borderColor = GlobalStyles.getColorTrafficRGBA(nodeClass, this.highlight);
+      const borderColor = GlobalStyles.getColorNodeRGBA(nodeClass, this.highlight);
       if (this.highlight) {
         this.innerCircleMaterial.color.setRGB(borderColor.r, borderColor.g, borderColor.b);
         this.meshes.innerCircle.geometry.colorsNeedUpdate = true;

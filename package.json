@@ -1,6 +1,6 @@
 {
   "name": "@jimpick/vizceral-dat",
-  "version": "4.6.0-1",
+  "version": "4.6.0-2",
   "description": "Intuitive animated traffic graph visualization using webgl. If a graph of nodes and edges with data about traffic volume is provided, it will render a traffic graph animating the connection volume between nodes.",
   "main": "src/vizceral.js",
   "repository": {

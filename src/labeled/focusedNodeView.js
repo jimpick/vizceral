@@ -51,6 +51,7 @@ class FocusedNodeView extends NodeView {
     super(service);
 
     this.borderColor = GlobalStyles.rgba.colorPageBackground;
+    console.log('Jim borderColor', this.borderColor)
     this.borderColorThree = new THREE.Color(this.borderColor.r, this.borderColor.g, this.borderColor.b);
     this.donutMaterial = new THREE.MeshBasicMaterial({ color: this.borderColorThree, transparent: true, opacity: this.borderColor.a });
     this.innerBorderMaterial = new THREE.MeshBasicMaterial({ color: this.borderColorThree, transparent: true, opacity: this.borderColor.a });
@@ -147,10 +148,11 @@ class FocusedNodeView extends NodeView {
       top += (this.headerFontSize / 2);
       // if (topData) {
         // textContext.fillStyle = GlobalStyles.styles.colorNormalDimmed;
-      textContext.fillStyle = GlobalStyles.styles.colorTraffic.normal;
+      // textContext.fillStyle = GlobalStyles.styles.colorNode.normal;
+      textContext.fillStyle = GlobalStyles.styles.colorWhite;
         // textContext.fillStyle = GlobalStyles.styles.colorNormal;
         // textContext.font = `${headerWeight} ${this.headerFontSize}px 'Source Sans Pro', sans-serif`;
-      textContext.font = `${headerWeight} 60px 'Source Sans Pro', sans-serif`;
+      textContext.font = `${headerWeight} 80px 'Source Sans Pro', sans-serif`;
         // textContext.fillText(topData.header, this.textCanvas.width / 2, top);
       textContext.fillText(
           this.object.getDisplayName(),
@@ -165,7 +167,7 @@ class FocusedNodeView extends NodeView {
       // Draw the top metric to the canvas
       top += (this.metricFontSize / 2);
       if (topData) {
-        textContext.fillStyle = GlobalStyles.styles.colorTraffic.normal;
+        textContext.fillStyle = GlobalStyles.styles.colorNode.normal;
         textContext.font = `${metricWeight} ${this.metricFontSize}px 'Source Sans Pro', sans-serif`;
         const topMetricDisplayValue = generateDisplayValue(_.get(this.object, topData.data), topData.format);
         textContext.fillText(topMetricDisplayValue, this.textCanvas.width / 2, top);
@@ -193,7 +195,7 @@ class FocusedNodeView extends NodeView {
       */
     } else {
       // The node is still loading so show a loading message
-      textContext.fillStyle = GlobalStyles.styles.colorTraffic.normal;
+      textContext.fillStyle = GlobalStyles.styles.colorNode.normal;
       textContext.font = `${metricWeight} ${this.metricFontSize}px 'Source Sans Pro', sans-serif`;
       top = ((this.canvasHeight / 2) - (((this.metricFontSize * 2)) / 2)) + 16;
       textContext.fillText('REGION', this.textCanvas.width / 2, top);
@@ -266,6 +268,7 @@ class FocusedNodeView extends NodeView {
 
       const donutData = _.get(this.object, this.detailed.donut.data, undefined);
       const donutIndices = _.get(this.detailed, ['donut', 'indices'], undefined);
+      /*
       if (donutIndices) {
         const totalPercent = _.sum(_.map(donutIndices, i => donutData[i.key] || 0));
         let startAngle = getStartAngle(totalPercent);
@@ -285,6 +288,7 @@ class FocusedNodeView extends NodeView {
           startAngle = this.addDonutSlice(startAngle, classPercent, GlobalStyles.getColorTrafficRGBA(colorKey));
         });
       }
+      */
     }
   }
 
@@ -321,7 +325,7 @@ class FocusedNodeView extends NodeView {
       this.arcMeterSegments.length = 0;
 
       const arcData = _.get(this.object, this.detailed.arc.data, undefined);
-      if (arcData) {
+      if (false && arcData) {
         // arc slices
         _.each(arcData.values, (value) => {
           const percent = value.value / arcData.total;
@@ -337,7 +341,7 @@ class FocusedNodeView extends NodeView {
           // figure out color of line
           if (line >= 1) {
             line = 1;
-            lineColor = GlobalStyles.rgba.colorTraffic.normal;
+            lineColor = GlobalStyles.rgba.colorNode.normal;
           }
           // line
           const linePosition = (Math.PI * line) - 0.01;
@@ -354,7 +358,7 @@ class FocusedNodeView extends NodeView {
           triangleShape.lineTo(startingX + triangleWidth, trianglePointRadius - triangleSize);
           triangleShape.lineTo(startingX, trianglePointRadius);
           const triangleGeometry = new THREE.ShapeGeometry(triangleShape);
-          const triangleColorRGBA = GlobalStyles.rgba.colorTraffic.normal;
+          const triangleColorRGBA = GlobalStyles.rgba.colorNode.normal;
           const triangleColor = new THREE.Color(triangleColorRGBA.r, triangleColorRGBA.g, triangleColorRGBA.b);
           const triangleMaterial = new THREE.MeshBasicMaterial({ color: triangleColor, side: THREE.DoubleSide, transparent: true, opacity: triangleColorRGBA.a });
 
@@ -386,7 +390,7 @@ class FocusedNodeView extends NodeView {
 
   setupLoadingAnimation () {
     const slice = new THREE.RingGeometry(this.innerRadius, this.radius, 30, 8, 0, Math.PI * 2 * 0.2);
-    const mat = new THREE.MeshBasicMaterial({ color: GlobalStyles.styles.colorTraffic.normal, side: THREE.DoubleSide });
+    const mat = new THREE.MeshBasicMaterial({ color: GlobalStyles.styles.colorNode.normal, side: THREE.DoubleSide });
     this.loadingSpinner = new THREE.Mesh(slice, mat);
     this.loadingSpinner.position.set(0, 0, this.depth + 2);
     this.container.add(this.loadingSpinner);
@@ -406,8 +410,8 @@ class FocusedNodeView extends NodeView {
     this.updateDetailedMode();
     super.refresh(force);
     this.updateText();
-    this.updateDonutGraph();
-    this.updateArcMeter();
+    // this.updateDonutGraph();
+    // this.updateArcMeter();
   }
 
   update () {
