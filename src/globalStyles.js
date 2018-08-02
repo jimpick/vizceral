@@ -47,6 +47,8 @@ class GlobalStyles {
         // normal: 'rgb(186, 213, 237)',
         // normal: 'rgb(0, 0, 255)',
         normal: 'rgb(255, 0, 0)',
+        multicastSend: 'rgb(0, 0, 255)',
+        multicastReceive: 'rgb(75, 0, 130)',
         normalDonut: 'rgb(91, 91, 91)',
         warning: 'rgb(268, 185, 73)',
         danger: 'rgb(255, 53, 53)'
