@@ -34,6 +34,7 @@ import SwarmTrafficGraph from './swarm/globalTrafficGraph';
 import LTRTreeLayout from './layouts/ltrTreeLayout';
 import RegionTrafficGraph from './region/regionTrafficGraph';
 import RingCenterLayout from './layouts/ringCenterLayout';
+import RingMulticastLayout from './layouts/ringMulticastLayout';
 import RingLayout from './layouts/ringLayout';
 
 import RendererUtils from './rendererUtils';
@@ -168,7 +169,8 @@ class Vizceral extends EventEmitter {
       ltrTree: LTRTreeLayout,
       dns: DNSLayout,
       ringCenter: RingCenterLayout,
-      ring: RingLayout
+      ring: RingLayout,
+      ringMulticast: RingMulticastLayout
     };
     this.moveNodeInteraction.setEnabled(this.options.allowDraggingOfNodes);
   }
